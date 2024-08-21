@@ -20,5 +20,10 @@ def load_shared_model(model_path, hf_token, device):
 
 if __name__ == "__main__":
     model_id = "meta-llama/Llama-2-7b-hf"
+    
+    # shard the model
+    shard_model(model_id)
+    
+    # load the model
     model_path = str(full_path("PATH_TO_SAVE")) # eg : /data/shared/****
-    model, tokenizer = load_shared_model(model_path, hf_token, device='cuda/cpu')
+    model, tokenizer = load_shared_model(model_path, hf_token, device='cuda')
