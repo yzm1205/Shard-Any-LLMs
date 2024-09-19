@@ -7,12 +7,14 @@ import time
 from pathlib import Path
 from typing import Union
 import sys
+from argparse import ArgumentParser
 
 sys.path.insert(0, "./src/")
 from utils import mkdir_p
 from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
 
 dotenv.load_dotenv(os.getenv("./models/.env"))
+parser = ArgumentParser()
 
 
 def shard_model_and_tokenizer(
