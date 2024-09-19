@@ -52,7 +52,7 @@ def main():
     
     args = parser.parse_args()
     shard_model_and_tokenizer(
-        save_dir=read_files.mkdir_p(str(args.save_dir)+"/{model_id.split('/')[-1]}"),
+        save_dir=read_files.mkdir_p(str(args.save_dir)+f"/{args.model_name.split('/')[-1]}"),
         token=args.token,
         max_shard_size=args.max_shard_size,
         model_name=args.model_name,
