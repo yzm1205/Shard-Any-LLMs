@@ -101,11 +101,11 @@ tokenizer = AutoTokenizer.from_pretrained(
 
 We welcome contributions! If you have ideas for improvements or new features, feel free to open an issue or submit a pull request.
 
-<comment>
+<!--
 ## 📄 License
 
-<>This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-</comment>
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+-->
 
 ## 🙏 Acknowledgments
 
