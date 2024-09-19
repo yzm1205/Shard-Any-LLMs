@@ -1,5 +1,4 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
-
 import dotenv
 import os
 import torch
@@ -8,13 +7,11 @@ from pathlib import Path
 from typing import Union
 import sys
 from argparse import ArgumentParser
-
-sys.path.insert(0, "./src/")
-from utils import mkdir_p
-from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
+import dotenv
 
 dotenv.load_dotenv(os.getenv("./models/.env"))
 parser = ArgumentParser()
+
 
 
 def shard_model_and_tokenizer(
@@ -25,7 +22,7 @@ def shard_model_and_tokenizer(
 ) -> None:
     """
     :param parent_save_dir: Parent directory under which model shards dir will be saved
-    :param token: huggingface token to access the llama weights
+    :param token: huggingface token to access the model weights
     :param max_shard_size: shard size. int means number of bytes
     :param model_name: HF Model Name
     :return:
@@ -43,4 +40,20 @@ def shard_model_and_tokenizer(
     model.save_pretrained(save_directory, max_shard_size=max_shard_size)
     tokenizer.save_pretrained(save_directory)
     print(f"Time Taken: {time.time() - start}")
+    
+if __name__ == "__main__":
+    hf_token = os.getenv("huggingface_token")
+    
+    parser.add_argument("--model_name", type=str, required=True)
+    parser.add_argument("--parent_save_dir", type=str, required=True,help="Parent directory under which model shards dir will be saved")
+    parser.add_argument("--token", type=str, help="huggingface token to access the model weights",default=hf_token)
+    parser.add_argument("--max_shard_size", type=str,help="shard size. int means number of bytes",default="2GB")
+    
+    args = parser.parse_args()
+    shard_model_and_tokenizer(
+        Path(args.parent_save_dir),
+        args.token,
+        args.max_shard_size,
+        args.model_name,
+    )
 
