@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/shard_llms/__init__.py
+src/shard_llms/sharding_model.py
+src/shard_llms.egg-info/PKG-INFO
+src/shard_llms.egg-info/SOURCES.txt
+src/shard_llms.egg-info/dependency_links.txt
+src/shard_llms.egg-info/entry_points.txt
+src/shard_llms.egg-info/requires.txt
+src/shard_llms.egg-info/top_level.txt
+src/utils/__init__.py
+src/utils/read_files.py
