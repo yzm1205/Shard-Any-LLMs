@@ -48,8 +48,59 @@ This will install:
    cd Shard-Any-LLMs
    ```
 
+## First Step: Set the environment variable:
+To use the Shard-Any-LLMs package with Hugging Face Hub functionality, you need to set up your Hugging Face token as an environment variable. 
+
+### 1. Obtain Your Hugging Face Token
+
+1. Go to the [Hugging Face website](https://huggingface.co/)
+2. Log in to your account
+3. Navigate to your profile settings
+4. Find and copy your API token
+
+### 2. Set the Environment Variable
+Depending on your operating system, use one of the following methods to set your HuggingFace token:
+
+**For macOS and Linux:**
+Open a terminal and run:
+
+``` bash
+export HF_TOKEN=your_token_here
+```
+To make this permanent, add the line to your shell configuration file (e.g., ~/.bashrc, ~/.zshrc):
+
+``` bash
+echo 'export HF_TOKEN=your_token_here' >> ~/.bashrc
+```
+Then, restart your terminal or run source ~/.bashrc.
+
+**For Windows:**
+In Command Prompt, run:
+``` text
+setx HF_TOKEN your_token_here
+```
+
 ## 🔬 Sharding a Model
-To shard a HuggingFace model, use the following command:
+
+There are two ways to use Shard LLMs: via command-line interface or by running the Python script directly.
+
+### Method 1: Command-Line Interface (Recommended)
+
+After installing the package, you can use the `shard_llms` command:
+
+```bash
+shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE
+
+Example: 
+
+shard_llms --model_name meta-llama/Meta-Llama-3.1-8B-Instruct --save_dir ~/sharded_model --max_shard_size 2GB
+
+```
+
+### Method 2: Running the Python Script
+
+Alternatively, you can run the Python script directly:
+
 ```bash
 python sharding_model.py \
   --model_name MODEL-ID \
@@ -68,9 +119,9 @@ python sharding_model.py \
   --token YOUR_HUGGINGFACE_TOKEN
 ```
 
-Replace `YOUR_HUGGINGFACE_TOKEN` with your actual HuggingFace token.
+> Note: When using either method, ensure that you have set up your Hugging Face token as an environment variable (HF_TOKEN) as described in the "First Step" section. Otherwise, replace `YOUR_HUGGINGFACE_TOKEN` with your actual HuggingFace token.
 
-## 🔧 Loading a Sharded Model
+### 🔧 Loading a Sharded Model
 
 To use your sharded model, you can load it using HuggingFace's `AutoModelForCausalLM` and `AutoTokenizer`:
 
@@ -94,6 +145,7 @@ tokenizer = AutoTokenizer.from_pretrained(
     token=hf_token
 )
 ```
+
 
 > 💡 **Pro Tip**: You can also use other methods to load sharded models, such as the `pipeline` API from Transformers.
 
