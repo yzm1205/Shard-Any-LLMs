@@ -1,4 +1,3 @@
-from hf_olmo import * # registers the Auto* classes
 from transformers import AutoModelForCausalLM, AutoTokenizer,AutoModel
 import torch
 import dotenv
