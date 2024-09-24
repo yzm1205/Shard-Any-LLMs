@@ -1,5 +1,5 @@
 import os
-from sharding_model import shard_model_and_tokenizer
+from src.sharding_model import shard_model_and_tokenizer
 from load_sharded_model import get_model_and_tokenizer
 from utils import mkdir_p, full_path
 
