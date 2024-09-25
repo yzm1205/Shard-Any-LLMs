@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: shard-llms
-Version: 0.2.7
+Version: 0.2.11
 Summary: Shard Large Language Models
 Home-page: https://github.com/yzm1205/Shard-Any-LLMs
 Author: Yzm0034
@@ -32,46 +32,17 @@ Sharding is a game-changer for working with LLMs. Here's why:
 
 ## 🛠️ Getting Started
 
-### Prerequisites
+### First Step: Set the environment variable:
+You need to set up your Hugging Face token as an environment variable to use the Shard-Any-LLMs package with Hugging Face Hub functionality. 
 
-Ensure you have all the necessary dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-This will install:
-- python-dotenv==1.0.1
-- transformers==4.44.2
-- torch==2.4.1
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   # SSH
-   git clone git@github.com:yzm1205/Shard-Any-LLMs.git
-
-   # HTTPS
-   git clone https://github.com/yzm1205/Shard-Any-LLMs.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd Shard-Any-LLMs
-   ```
-
-## First Step: Set the environment variable:
-To use the Shard-Any-LLMs package with Hugging Face Hub functionality, you need to set up your Hugging Face token as an environment variable. 
-
-### 1. Obtain Your Hugging Face Token
+#### 1. Obtain Your Hugging Face Token
 
 1. Go to the [Hugging Face website](https://huggingface.co/)
 2. Log in to your account
 3. Navigate to your profile settings
 4. Find and copy your API token
 
-### 2. Set the Environment Variable
+#### 2. Set the Environment Variable
 Depending on your operating system, use one of the following methods to set your HuggingFace token:
 
 **For macOS and Linux:**
@@ -93,26 +64,53 @@ In Command Prompt, run:
 setx HF_TOKEN your_token_here
 ```
 
-## 🔬 Sharding a Model
+### 🔬 Sharding a Model
 
 There are two ways to use Shard LLMs: via command-line interface or by running the Python script directly.
 
-### Method 1: Command-Line Interface (Recommended)
+#### Method 1: Command-Line Interface (Recommended)
 
 After installing the package, you can use the `shard_llms` command:
 
 ```bash
-shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE
+shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE --token HF_TOKENS
 
 Example: 
 
 shard_llms --model_name meta-llama/Meta-Llama-3.1-8B-Instruct --save_dir ~/sharded_model --max_shard_size 2GB
 
 ```
+> Since I have already set up the environment variable, I ignored the `--token` flag.
 
-### Method 2: Running the Python Script
+#### Method 2: Running the Python Script
 
-Alternatively, you can run the Python script directly:
+##### Installation
+
+Clone the repository:
+   ```bash
+   # SSH
+   git clone git@github.com:yzm1205/Shard-Any-LLMs.git
+
+   # HTTPS
+   git clone https://github.com/yzm1205/Shard-Any-LLMs.git
+   ```
+
+##### Prerequisites
+
+Ensure you have all the necessary dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+This will install:
+- python-dotenv==1.0.1
+- transformers==4.44.2
+- torch==2.4.1
+
+#### RUN
+
+You can run the Python script directly:
 
 ```bash
 python sharding_model.py \
@@ -134,7 +132,7 @@ python sharding_model.py \
 
 > Note: When using either method, ensure that you have set up your Hugging Face token as an environment variable (HF_TOKEN) as described in the "First Step" section. Otherwise, replace `YOUR_HUGGINGFACE_TOKEN` with your actual HuggingFace token.
 
-### 🔧 Loading a Sharded Model
+##### 🔧 Loading a Sharded Model
 
 To use your sharded model, you can load it using HuggingFace's `AutoModelForCausalLM` and `AutoTokenizer`:
 
@@ -143,6 +141,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 model_dir = "./sharded_model/Meta-Llama-3.1-8B-Instruct/"
+#optional: ignore, if HF_TOKEN is set else:
 hf_token = "YOUR_HUGGINGFACE_TOKEN"
 
 model = AutoModelForCausalLM.from_pretrained(

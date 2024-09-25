@@ -100,7 +100,7 @@ This will install:
 You can run the Python script directly:
 
 ```bash
-python sharding_model.py \
+python src/sharding_model.py \
   --model_name MODEL-ID \
   --save_dir SAVE_DIRECTORY \
   --max_shard_size SHARD_SIZE \
@@ -110,7 +110,7 @@ Example: \
 Let's shard the LLaMA-3.1-8B-Instruct model as an example:
 
 ```bash
-python sharding_model.py \
+python src/sharding_model.py \
   --model_name meta-llama/Meta-Llama-3.1-8B-Instruct \
   --save_dir ~/sharded_model \
   --max_shard_size 2GB \
