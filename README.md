@@ -70,6 +70,17 @@ shard_llms --model_name meta-llama/Meta-Llama-3.1-8B-Instruct --save_dir ~/shard
 
 #### Method 2: Running the Python Script
 
+##### Installation
+
+Clone the repository:
+   ```bash
+   # SSH
+   git clone git@github.com:yzm1205/Shard-Any-LLMs.git
+
+   # HTTPS
+   git clone https://github.com/yzm1205/Shard-Any-LLMs.git
+   ```
+
 ##### Prerequisites
 
 Ensure you have all the necessary dependencies:
@@ -83,23 +94,9 @@ This will install:
 - transformers==4.44.2
 - torch==2.4.1
 
-##### Installation
+#### RUN
 
-1. Clone the repository:
-   ```bash
-   # SSH
-   git clone git@github.com:yzm1205/Shard-Any-LLMs.git
-
-   # HTTPS
-   git clone https://github.com/yzm1205/Shard-Any-LLMs.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd Shard-Any-LLMs
-   ```
-
-Alternatively, you can run the Python script directly:
+You can run the Python script directly:
 
 ```bash
 python sharding_model.py \
@@ -130,6 +127,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 model_dir = "./sharded_model/Meta-Llama-3.1-8B-Instruct/"
+#optional: ignore, if HF_TOKEN is set else:
 hf_token = "YOUR_HUGGINGFACE_TOKEN"
 
 model = AutoModelForCausalLM.from_pretrained(
