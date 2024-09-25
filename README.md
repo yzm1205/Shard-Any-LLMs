@@ -60,13 +60,14 @@ There are two ways to use Shard LLMs: via command-line interface or by running t
 After installing the package, you can use the `shard_llms` command:
 
 ```bash
-shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE
+shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE --token HF_TOKENS
 
 Example: 
 
 shard_llms --model_name meta-llama/Meta-Llama-3.1-8B-Instruct --save_dir ~/sharded_model --max_shard_size 2GB
 
 ```
+> Since I have already set up the environment variable, I ignored the `--token` flag.
 
 #### Method 2: Running the Python Script
 
