@@ -57,13 +57,17 @@ There are two ways to use Shard LLMs: via command-line interface or by running t
 
 #### Method 1: Command-Line Interface (Recommended)
 
-After installing the package, you can use the `shard_llms` command:
-
+1) Run
 ```bash
+pip install shard-llms
+```
+
+2) 
+ ```bash
 shard_llms --model_name MODEL-ID --save_dir SAVE_DIRECTORY --max_shard_size SHARD_SIZE --token HF_TOKENS
-
+```
 Example: 
-
+``` bash
 shard_llms --model_name meta-llama/Meta-Llama-3.1-8B-Instruct --save_dir ~/sharded_model --max_shard_size 2GB
 
 ```
