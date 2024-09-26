@@ -9,6 +9,7 @@ import sys
 from argparse import ArgumentParser
 import dotenv
 from utils import read_files
+from hf_olmo import *
 
 try:
     dotenv.load_dotenv(os.getenv("./models/.env"))
@@ -41,8 +42,13 @@ def shard_model_and_tokenizer(
     tokenizer = AutoTokenizer.from_pretrained(
         model_name, trust_remote_code=True, token=token
     )
-    model = AutoModel.from_pretrained(model_name, trust_remote_code=True, token=token)
-
+    try:
+        model = AutoModel.from_pretrained(model_name, trust_remote_code=True, token=token)
+    except:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name, trust_remote_code=True, token=token
+        )
+        
     model.save_pretrained(save_directory, max_shard_size=max_shard_size)
     tokenizer.save_pretrained(save_directory)
     print(f"Time Taken: {time.time() - start}")
