@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="shard_llms",
-    version="0.2.12",
+    version="0.2.13",
     author="Yzm0034",
     author_email="yash.mahajan50@gmail.com",
     description="Shard Large Language Models",
